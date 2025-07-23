@@ -23,20 +23,83 @@ Copiar las variables del archivo de ejemplo `.env-example` y copiarlas en el arc
 
 ## Documentación de la API  
 
-### Products
+Información explicita de como esta compuesta la API, que funcionalidades y métodos utiliza.  
+
+
+## Products Path
 
 Lista de operaciones de la API REST relacionadas a los productos:
 
 - [`GET`](#obtener-todos-los-productos) - /api/products | Obtiene una lista de todos los productos.
 
-- `GET` - /api/products/{id} | Obtiene un producto por su ID.
+- [`GET`](#obtener-un-producto-por-su-id) - /api/products/{id} | Obtiene un producto por su ID.
 
-- `POST` - /api/products/create | Crea un nuevo producto.
+- [`POST`](#crear-un-producto-nuevo) - /api/products/create | Crea un nuevo producto.
 
-- `PUT` - /api/products/update/{id} | Actualiza un producto por su ID.
+- [`PUT`](#actualizar-un-producto) - /api/products/update/{id} | Actualiza un producto por su ID.
 
-- `DELETE` - /api/products/{id} | Elimina un producto por su ID.
+- [`DELETE`](#eliminar-un-producto) - /api/products/{id} | Elimina un producto por su ID.
 
 ---  
 
 ### Obtener todos los productos
+
+
+### Obtener un producto por su ID  
+
+
+### Crear un producto nuevo  
+
+
+### Actualizar un producto
+
+
+### Eliminar un producto  
+
+
+
+
+---  
+
+
+## Users Path
+
+Lista de operaciones de la API REST relacionadas a los usuarios:
+
+- [`GET`](#obtener-todos-los-usuario) - /api/products | Obtiene una lista de todos los productos.
+
+- [`GET`](#obtener-un-usuario-por-su-id) - /api/products/{id} | Obtiene un usuario por su ID.
+
+- [`POST`](#crear-un-usuario-nuevo) - /api/products/create | Crea un nuevo usuario.
+
+- [`PUT`](#actualizar-un-usuario) - /api/products/update/{id} | Actualiza un usuario por su ID.
+
+- [`DELETE`](#eliminar-un-usuario) - /api/products/{id} | Elimina un usuario por su ID.
+
+---  
+
+### Obtener todos los usuarios
+
+
+### Obtener un usuario por su ID  
+
+
+### Crear un usuario nuevo  
+
+
+### Actualizar un usuario
+
+
+### Eliminar un usuario  
+
+
+
+---   
+
+## Auth Path
+
+Lista de operaciones de la API REST relacionadas a la autenticación y seguridad de los datos:  
+
+- [`POST`](#) - /api/auth/login | Genera un token de seguridad temporal para el usuario.
+
+

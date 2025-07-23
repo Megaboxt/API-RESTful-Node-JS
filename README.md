@@ -27,6 +27,17 @@ Información explicita de como esta compuesta la API, que funcionalidades y mét
 NOTA: **TODAS** las rutas deben autenticarse con un token, excepto la de crear un usuario nuevo y la de `/auth/login`.
 
 
+## Rutas - Endpoints
+
+
+- [Products Path](#products-path)
+
+- [Users Path](#users-path)
+
+- [Auth Path](#authorization-path)
+
+
+
 ## Products Path
 
 Lista de operaciones de la API REST relacionadas a los productos:
@@ -65,7 +76,7 @@ Lista de operaciones de la API REST relacionadas a los productos:
       "Mas Productos autorizados"
     ],
     "stock": 10
-  }
+  }, ... ( etc products)
 ]
 ```
 
@@ -118,7 +129,7 @@ Lista de operaciones de la API REST relacionadas a los productos:
 {
   "id": {
     "type": "firestore/documentReference/1.0",
-    "referencePath": "products/Khfqym5hOUPe2NjETIpM"
+    "referencePath": "products/xxx"
   },
   "name": "Nuevo Producto",
   "price": 100,
@@ -165,7 +176,7 @@ Lista de operaciones de la API REST relacionadas a los productos:
 ### Eliminar un producto  
 
 - **GET** `/api/products/:id`
-- **Descripción:** Elimina un producto por su ID.
+- **Descripción:** Elimina un producto por su ID. Se debe ingresar un Token de autorización en la opción `Bearer`
 - **Parámetros:**
   - `id` (path, requerido): ID del producto a eliminar.
 - **Respuesta ejemplo:**
@@ -196,28 +207,156 @@ Lista de operaciones de la API REST relacionadas a los usuarios:
 
 ---  
 
+
+
+
+
 ### Obtener todos los usuarios
 
+- **GET** `/api/users`
+- **Descripción**: Devuelve una lista de todos los usuarios. Se debe ingresar un Token de autorización en la opción `Bearer`.
+- **Respuesta ejemplo:**
+
+```json
+[
+  {
+    "id": "xxx",
+    "email": "xxx@xxx.com",
+    "password": "xxxx"
+  },
+  {
+    "id": "xxx",
+    "email": "xxx@xxx.com",
+    "password": "xxxx"
+  }
+]
+```
 
 ### Obtener un usuario por su ID  
 
+- **GET** `/api/users/:id`
+- **Descripción:** Devuelve un producto específico por su ID. Se debe ingresar un Token de autorización en la opción `Bearer`.
+- **Parámetros:**
+  - `id` (path, requerido): ID del producto.
+- **Ejemplo de uso:** `/api/users/UGCY4MaZquIzk6MI9Nqd`
+- **Respuesta ejemplo:**
+
+```json
+{
+  "id": "UGCY4MaZquIzk6MI9Nqd",
+  "email": "xxx@xxx.com",
+  "password": "xxxx"
+}
+```
+
+
+
 
 ### Crear un usuario nuevo  
+
+- **POST** `/api/users/create`
+- **Descripción**: Crea un nuevo usuario. 
+- **Body (JSON):**
+
+```json
+{
+  "email": "xxx@xxx.com",
+  "password": "xxxx"
+}
+```
+
+- **Respuesta ejemplo:**
+
+```json
+{
+  "id": {
+    "type": "firestore/documentReference/1.0",
+    "referencePath": "users/xxx"
+  },
+  "email": "xxx@xxx.com",
+  "password": "xxxx"
+}
+```
+
+
+
 
 
 ### Actualizar un usuario
 
 
+- **GET** `/api/users/update/:id`
+- **Descripción:** Actualiza un usuario por su ID. Se debe ingresar un Token de autorización en la opción `Bearer`.
+- **Parámetros:**
+  - `id` (path, requerido): ID del usuario a actualizar.
+- **Ejemplo de uso:** /api/products/update/xxx
+- **Body (JSON):**
+
+```json
+{
+  "name": "Updated Product",
+  "price": 300,
+  "description": "Updating a product",
+  "stock": 10,
+  "categories": ["Productos", "Mas Productos"]
+}
+```
+
+- **Respuesta ejemplo:**
+
+```json
+{
+  "message": "Usuario actualizado"
+}
+```
+
+
+
+
 ### Eliminar un usuario  
+
+- **GET** `/api/users/:id`
+- **Descripción:** Elimina un usuario por su ID. Se debe ingresar un Token de autorización en la opción `Bearer`
+- **Parámetros:**
+  - `id` (path, requerido): ID del usuario a eliminar.
+- **Respuesta ejemplo:**
+
+```json
+{
+  "message": "Usuario eliminado correctamete."
+}
+```
+
+
+
 
 
 
 ---   
 
-## Auth Path
+## Authorization Path
 
 Lista de operaciones de la API REST relacionadas a la autenticación y seguridad de los datos:  
 
-- [`POST`](#) - /api/auth/login | Genera un token de seguridad temporal para el usuario.
+- [`POST`](#login-del-usuario) - `/api/auth/login` | Genera un token de seguridad temporal para el usuario con JWT.
 
+### Login del usuario  
 
+- **POST** `/api/auth/login`
+- **Descripción**: Una vez creado un usuario, se puede enviar una solicitud con los datos del `email` y el `password` en la opción body con formato json, para generar un token y autorizar las demas rutas de la API.
+- **Body (JSON):**
+
+```json
+{
+  "email": "usuario1@correo.com",
+  "password": "StrongPassUser1"
+}
+```
+
+- **Respuesta ejemplo:**
+
+```json
+{
+  "token": "string del json web token"
+}
+```

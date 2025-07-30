@@ -30,7 +30,7 @@ app.use('/api', authRouter);
 
 app.use('/api', usersRouter);
 
-app.use('/api', authentication, productsRouter);
+app.use('/api', productsRouter);
 
 
 /* ===== Error Handle ====== */
